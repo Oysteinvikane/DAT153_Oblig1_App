@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Name Quiz</string>
+    <string name="title_database_list">Navn</string>
+    <string name="title_database_detail">Database Detail</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+</resources>
