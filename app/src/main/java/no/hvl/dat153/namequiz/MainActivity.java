@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button addButton;
 
+    private Button quizButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 moveToDatabaseActivity();
+
+            }
+        });
+
+        quizButton = findViewById(R.id.quiz);
+
+        quizButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                moveToQuizActivity();
 
             }
         });
@@ -50,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AddActivity.class);
             startActivity(intent);
         }
+
+    private void moveToQuizActivity() {
+        if (DatabaseList.ITEMS.size() > 0) {
+            Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+            startActivity(intent);
+        } else {
+            moveToAddActivity();
+        }
+    }
 
 
 

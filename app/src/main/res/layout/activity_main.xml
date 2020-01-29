@@ -32,13 +32,13 @@
         android:layout_marginRight="158dp"
         android:layout_marginBottom="75dp"
         android:text="Database"
-        app:layout_constraintBottom_toTopOf="@+id/database"
+        app:layout_constraintBottom_toTopOf="@+id/quiz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/database"
+        android:id="@+id/quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
@@ -67,6 +67,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/database" />
+        app:layout_constraintTop_toBottomOf="@+id/quiz" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

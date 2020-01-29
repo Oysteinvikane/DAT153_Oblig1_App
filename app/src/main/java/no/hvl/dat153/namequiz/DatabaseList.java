@@ -34,9 +34,13 @@ public class DatabaseList {
 
     static {
         // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
+        for (int i = 1; i <= 0; i++) {
             addItem(createDummyItem(i));
         }
+    }
+
+    public static List<Person> getItems() {
+        return ITEMS;
     }
 
 
@@ -44,7 +48,6 @@ public class DatabaseList {
     private static Person createDummyItem(int position) {
         return new Person(String.valueOf(position), "Navn nr: " + position, null);
     }
-
 
     /**
      * Person class for storing a person in the database

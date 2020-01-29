@@ -1,5 +1,6 @@
 package no.hvl.dat153.namequiz;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -10,8 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileNotFoundException;
@@ -32,10 +33,8 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         Button addButton = (Button) findViewById(R.id.velgBilde);
-        addButton = findViewById(R.id.velgBilde);
 
         Button leggTilButton = (Button) findViewById(R.id.leggTilPerson);
-        leggTilButton = findViewById(R.id.leggTilPerson);
 
         addButton.setOnClickListener(new View.OnClickListener() {
                                          @Override
@@ -53,13 +52,8 @@ public class AddActivity extends AppCompatActivity {
         leggTilButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView imageView = (ImageView) findViewById(R.id.imageView);
-                Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-                EditText editText = findViewById(R.id.content);
-                String result = editText.getText().toString();
-                Person p = new Person(String.valueOf(6), result, bitmap);
-                DatabaseList.addItem(p);
-                moveToMainActivity();
+
+                addPersonActivity();
             }
         });
 
@@ -69,6 +63,35 @@ public class AddActivity extends AppCompatActivity {
     private void moveToMainActivity() {
         Intent intent = new Intent(AddActivity.this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private void addPersonActivity() {
+
+        ImageView imageView = (ImageView) findViewById(R.id.imageViewQuiz);
+        EditText editText = findViewById(R.id.content);
+        String result = editText.getText().toString();
+        if (imageView.getDrawable() == null || result.matches("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("ERROR!!!!");
+            builder.setMessage("Legg til et bilde og navn");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+
+            builder.setCancelable(false);
+            builder.show();
+            return;
+        }
+
+        Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+
+        Person p = new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), result, bitmap);
+        DatabaseList.addItem(p);
+        moveToMainActivity();
+
     }
 
     /**
@@ -82,7 +105,7 @@ public class AddActivity extends AppCompatActivity {
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-            ImageView imageView = (ImageView) findViewById(R.id.imageView);
+            ImageView imageView = (ImageView) findViewById(R.id.imageViewQuiz);
             try {
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                 imageView.setImageBitmap(bm);
