@@ -65,12 +65,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     private void moveToQuizActivity() {
-        if (DatabaseList.ITEMS.size() > 0) {
             Intent intent = new Intent(MainActivity.this, QuizActivity.class);
             startActivity(intent);
-        } else {
-            moveToAddActivity();
-        }
+
     }
 
 

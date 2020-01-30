@@ -30,24 +30,6 @@ public class DatabaseList {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static final int COUNT = 5;
-
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= 0; i++) {
-            addItem(createDummyItem(i));
-        }
-    }
-
-    public static List<Person> getItems() {
-        return ITEMS;
-    }
-
-
-
-    private static Person createDummyItem(int position) {
-        return new Person(String.valueOf(position), "Navn nr: " + position, null);
-    }
 
     /**
      * Person class for storing a person in the database

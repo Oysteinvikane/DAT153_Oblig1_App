@@ -2,6 +2,8 @@ package no.hvl.dat153.namequiz;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,7 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import no.hvl.dat153.namequiz.DatabaseList.Person;
 
 /**
  * An activity representing a list of Navn. This activity
@@ -28,6 +33,7 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
+
 public class DatabaseListActivity extends AppCompatActivity {
 
     /**
@@ -35,6 +41,8 @@ public class DatabaseListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    private static boolean firstRun = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +67,30 @@ public class DatabaseListActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        if (firstRun) {
+
+            Bitmap image1 = BitmapFactory.decodeResource(getResources(), R.drawable.pic1);
+            Bitmap image2 = BitmapFactory.decodeResource(getResources(), R.drawable.pic2);
+            Bitmap image3 = BitmapFactory.decodeResource(getResources(), R.drawable.pic3);
+
+            Bitmap bm1 = Bitmap.createScaledBitmap(image1, 1000, 1333, true);
+            Bitmap bm2 = Bitmap.createScaledBitmap(image2, 1000, 1333, true);
+            Bitmap bm3 = Bitmap.createScaledBitmap(image3, 1000, 1333, true);
+
+
+            ArrayList<Bitmap> bmList = new ArrayList<>();
+            bmList.add(bm1);
+            bmList.add(bm2);
+            bmList.add(bm3);
+
+
+            DatabaseList.addItem(new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), "Kjetil", bmList.get(0)));
+            DatabaseList.addItem(new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), "Øystein", bmList.get(1)));
+            DatabaseList.addItem(new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), "Vilhelm", bmList.get(2)));
+
+
+        }
+        firstRun = false;
 
         if (findViewById(R.id.database_detail_container) != null) {
             // The detail container view will be present only in the
@@ -126,6 +158,11 @@ public class DatabaseListActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+            // Add some sample items.
+
+
 
         SimpleItemRecyclerViewAdapter(DatabaseListActivity parent,
                                       List<DatabaseList.Person> items,
