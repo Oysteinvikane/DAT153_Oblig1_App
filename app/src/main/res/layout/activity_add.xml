@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/imageView_Desc"
-        app:layout_constraintBottom_toTopOf="@+id/velgBilde"
+        app:layout_constraintBottom_toTopOf="@+id/uploadPic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
@@ -37,7 +37,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/velgBilde"
+        android:id="@+id/uploadPic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

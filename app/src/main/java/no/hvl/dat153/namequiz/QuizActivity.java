@@ -27,11 +27,11 @@ public class QuizActivity extends AppCompatActivity {
 
     private List<Person> items;
     private ImageView imageView;
-    private String riktigSvar;
-    Button svarButton;
+    private String correctAnswer;
+    Button answerButton;
 
     private int score = 0;
-    private ArrayList<Person> quizListe = new ArrayList<>();
+    private ArrayList<Person> quizList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +45,13 @@ public class QuizActivity extends AppCompatActivity {
 
 
         for (int i = 0; i < DatabaseList.ITEMS.size(); i++) {
-            quizListe.add(DatabaseList.ITEMS.get(i));
+            quizList.add(DatabaseList.ITEMS.get(i));
         }
 
 
-        svarButton = (Button) findViewById(R.id.answerButton);
+        answerButton = (Button) findViewById(R.id.answerButton);
 
-        svarButton.setOnClickListener(new View.OnClickListener() {
+        answerButton.setOnClickListener(new View.OnClickListener() {
                                          @Override
                                          public void onClick(View v) {
 
@@ -68,13 +68,13 @@ public class QuizActivity extends AppCompatActivity {
     public void showNextQuiz() {
 
         Random random = new Random();
-        int randNum = random.nextInt(quizListe.size());
+        int randNum = random.nextInt(quizList.size());
 
-        Person person = quizListe.get(randNum);
+        Person person = quizList.get(randNum);
 
-        quizListe.remove(person);
+        quizList.remove(person);
 
-        riktigSvar = person.toString();
+        correctAnswer = person.toString();
 
         imageView.setImageBitmap(person.getImage());
 
@@ -87,31 +87,31 @@ public class QuizActivity extends AppCompatActivity {
         String svar = editText.getText().toString();
 
         String title;
-        String melding;
+        String message;
 
         //Sjekker svar og utfører oppaver som skal gjøres om riktig/feil svar.
-        if (riktigSvar.toLowerCase().equals(svar.toLowerCase())) {
-            title = "Riktig svar";
+        if (correctAnswer.toLowerCase().equals(svar.toLowerCase())) {
+            title = "Correct answer";
             score++;
             TextView textScore = findViewById(R.id.score);
             textScore.setText(String.valueOf(score));
-            melding = "Bra jobbet!";
+            message = "Good job!";
         } else {
-            title = "Feil svar...";
-            melding = "Riktig svar er: " + riktigSvar;
+            title = "Wrong answer...";
+            message = "Correct answer is: " + correctAnswer;
 
         }
         //Skriver ut varsel på skjermen med resultat.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
-        builder.setMessage(melding);
+        builder.setMessage(message);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (quizListe.size() < 1) {
+                if (quizList.size() < 1) {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(QuizActivity.this);
-                    builder1.setTitle("Quizen er ferdig");
-                    builder1.setMessage("Din score ble: " + score);
+                    builder1.setTitle("Quiz finished");
+                    builder1.setMessage("Your score: " + score);
                     builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

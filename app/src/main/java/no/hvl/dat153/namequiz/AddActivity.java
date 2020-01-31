@@ -29,7 +29,7 @@ public class AddActivity extends AppCompatActivity {
 
     private static int REQUEST_IMAGE_CAPTURE = 0;
     private static int RESULT_LOAD_IMAGE = 1;
-    Button addButton, leggTilButton, cameraButton;
+    Button addButton, addPersonButton, cameraButton;
 
     private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
 
@@ -48,8 +48,8 @@ public class AddActivity extends AppCompatActivity {
             requestPermissions(permissions, requestCode);
         }
 
-        addButton = (Button) findViewById(R.id.velgBilde);
-        leggTilButton = (Button) findViewById(R.id.addNewPerson);
+        addButton = (Button) findViewById(R.id.uploadPic);
+        addPersonButton = (Button) findViewById(R.id.addNewPerson);
         cameraButton = (Button) findViewById(R.id.camera_button);
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class AddActivity extends AppCompatActivity {
                                          }
                                      }
         );
-        leggTilButton.setOnClickListener(new View.OnClickListener() {
+        addPersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

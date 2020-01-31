@@ -33,18 +33,18 @@ public class DatabaseList {
      */
     public static class Person {
         public final String id;
-        public final String navn;
+        public final String name;
         public final Bitmap image;
 
-        public Person(String id, String navn, Bitmap image) {
+        public Person(String id, String name, Bitmap image) {
             this.id = id;
-            this.navn = navn;
+            this.name = name;
             this.image = image;
         }
 
         @Override
         public String toString() {
-            return navn;
+            return name;
         }
         public Bitmap getImage() {
             return image;
