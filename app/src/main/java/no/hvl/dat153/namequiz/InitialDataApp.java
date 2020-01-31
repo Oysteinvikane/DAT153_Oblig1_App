@@ -28,7 +28,6 @@ public class InitialDataApp extends Application {
         bmList.add(bm2);
         bmList.add(bm3);
 
-
         DatabaseList.addItem(new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), "Kjetil", bmList.get(0)));
         DatabaseList.addItem(new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), "Øystein", bmList.get(1)));
         DatabaseList.addItem(new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), "Vilhelm", bmList.get(2)));
