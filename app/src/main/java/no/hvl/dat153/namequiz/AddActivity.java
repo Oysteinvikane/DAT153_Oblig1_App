@@ -20,13 +20,18 @@ import java.io.IOException;
 
 import no.hvl.dat153.namequiz.DatabaseList.Person;
 
-
+/**
+ *
+ */
 public class AddActivity extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 
 
-
+    /**
+     * creates a view for the add activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +65,17 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * goes to main activity
+     */
     private void moveToMainActivity() {
         Intent intent = new Intent(AddActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * adds a new person to the database
+     */
     private void addPersonActivity() {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageViewQuiz);
