@@ -24,7 +24,7 @@ public class QuizActivity extends AppCompatActivity {
     private ImageView imageView;
     private String riktigSvar;
 
-    private static int score = 0;
+    private int score = 0;
     private ArrayList<Person> quizListe = new ArrayList<>();
 
     @Override
