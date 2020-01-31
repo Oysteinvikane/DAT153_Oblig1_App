@@ -8,21 +8,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
+ * Helper class for providing a List to the
+ * Database
+ *
  */
 public class DatabaseList {
 
     /**
-     * An array of sample (dummy) items.
+     * An array of person items.
      */
     public static final List<Person> ITEMS = new ArrayList<Person>();
 
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
+
     public static final Map<String, Person> ITEM_MAP = new HashMap<String, Person>();
 
     public static void addItem(Person item) {
