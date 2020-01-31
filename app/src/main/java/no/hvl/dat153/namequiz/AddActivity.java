@@ -25,8 +25,9 @@ import no.hvl.dat153.namequiz.DatabaseList.Person;
  */
 public class AddActivity extends AppCompatActivity {
 
+    private static int REQUEST_IMAGE_CAPTURE = 0;
     private static int RESULT_LOAD_IMAGE = 1;
-
+    Button addButton, leggTilButton, cameraButton;
 
     /**
      * creates a view for the add activity
@@ -37,9 +38,9 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        Button addButton = (Button) findViewById(R.id.velgBilde);
-
-        Button leggTilButton = (Button) findViewById(R.id.leggTilPerson);
+        addButton = (Button) findViewById(R.id.velgBilde);
+        leggTilButton = (Button) findViewById(R.id.leggTilPerson);
+        cameraButton = (Button) findViewById(R.id.camera_button);
 
         addButton.setOnClickListener(new View.OnClickListener() {
                                          @Override
@@ -62,6 +63,16 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        });
+
 
     }
 
@@ -72,6 +83,7 @@ public class AddActivity extends AppCompatActivity {
         Intent intent = new Intent(AddActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
 
     /**
      * adds a new person to the database
@@ -111,10 +123,10 @@ public class AddActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        ImageView imageToUpload = findViewById(R.id.imageViewQuiz);
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             ImageView imageView = (ImageView) findViewById(R.id.imageViewQuiz);
             try {
@@ -122,7 +134,13 @@ public class AddActivity extends AppCompatActivity {
                 imageView.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
             } catch (IOException e) {
+                e.printStackTrace();
             }
+        }else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            Bitmap bitmap = (Bitmap) extras.get("data");
+            imageToUpload.setImageBitmap(bitmap);
+
         }
     }
     }
