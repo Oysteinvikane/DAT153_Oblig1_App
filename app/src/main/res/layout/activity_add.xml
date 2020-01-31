@@ -10,6 +10,7 @@
         android:id="@+id/imageViewQuiz"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/imageView_Desc"
         app:layout_constraintBottom_toTopOf="@+id/velgBilde"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,10 +30,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/content"
+            android:id="@+id/newName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Navn" />
+            android:hint="@string/name_field" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -44,19 +45,19 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Velg Bilde"
+        android:text="@string/upload_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/leggTilPerson" />
+        app:layout_constraintStart_toEndOf="@+id/addNewPerson" />
 
     <Button
-        android:id="@+id/leggTilPerson"
+        android:id="@+id/addNewPerson"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Legg Til Person"
+        android:text="@string/add_person"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/camera_button" />
 

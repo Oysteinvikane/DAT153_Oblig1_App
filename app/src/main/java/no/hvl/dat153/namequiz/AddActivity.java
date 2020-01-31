@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -30,6 +31,9 @@ public class AddActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1;
     Button addButton, leggTilButton, cameraButton;
 
+    private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
+
+
     /**
      * creates a view for the add activity
      * @param savedInstanceState
@@ -39,8 +43,13 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        int requestCode = 200;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions, requestCode);
+        }
+
         addButton = (Button) findViewById(R.id.velgBilde);
-        leggTilButton = (Button) findViewById(R.id.leggTilPerson);
+        leggTilButton = (Button) findViewById(R.id.addNewPerson);
         cameraButton = (Button) findViewById(R.id.camera_button);
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -92,12 +101,12 @@ public class AddActivity extends AppCompatActivity {
     private void addPersonActivity() {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageViewQuiz);
-        EditText editText = findViewById(R.id.content);
+        EditText editText = findViewById(R.id.newName);
         String result = editText.getText().toString();
         if (imageView.getDrawable() == null || result.matches("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("ERROR!!!!");
-            builder.setMessage("Legg til et bilde og navn");
+            builder.setTitle("ERROR!");
+            builder.setMessage("Add a picture and a name.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

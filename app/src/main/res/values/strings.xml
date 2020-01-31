@@ -1,8 +1,19 @@
 <resources>
     <string name="app_name">Name Quiz</string>
-    <string name="title_database_list">Navn</string>
+    <string name="title_database_list">Name</string>
     <string name="title_database_detail">Database Detail</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
-    <string name="camera_button">Kamera</string>
+    <string name="camera_button">Camera</string>
+    <string name="add_button">Add</string>
+    <string name="quiz_button">Start</string>
+    <string name="quiz_list">Entry list</string>
+    <string name="name_quiz">Name Quiz</string>
+    <string name="add_person">Add new person</string>
+    <string name="upload_button">Upload</string>
+    <string name="name_field">Name:</string>
+    <string name="imageView_Desc">ImageView for the uploaded picture</string>
+    <string name="quiz_text">Who is this?</string>
+    <string name="score">Score:</string>
+    <string name="answer_button">Submit</string>
 </resources>

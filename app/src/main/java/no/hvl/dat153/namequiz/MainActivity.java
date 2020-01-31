@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        databaseButton = findViewById(R.id.Database);
+        databaseButton = findViewById(R.id.quiz_list);
 
         databaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        quizButton = findViewById(R.id.quiz);
+        quizButton = findViewById(R.id.quizstart);
 
         quizButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,22 +7,22 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="158dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="158dp"
         android:layout_marginBottom="79dp"
-        android:text="Name Quiz"
+        android:text="@string/app_name"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/Database"
+        app:layout_constraintBottom_toTopOf="@+id/quiz_list"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Database"
+        android:id="@+id/quiz_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
@@ -31,14 +31,14 @@
         android:layout_marginEnd="158dp"
         android:layout_marginRight="158dp"
         android:layout_marginBottom="75dp"
-        android:text="Database"
-        app:layout_constraintBottom_toTopOf="@+id/quiz"
+        android:text="@string/quiz_list"
+        app:layout_constraintBottom_toTopOf="@+id/quizstart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/appName" />
 
     <Button
-        android:id="@+id/quiz"
+        android:id="@+id/quizstart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
@@ -47,11 +47,11 @@
         android:layout_marginEnd="158dp"
         android:layout_marginRight="158dp"
         android:layout_marginBottom="75dp"
-        android:text="Quiz"
+        android:text="@string/quiz_button"
         app:layout_constraintBottom_toTopOf="@+id/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Database" />
+        app:layout_constraintTop_toBottomOf="@+id/quiz_list" />
 
     <Button
         android:id="@+id/add"
@@ -63,10 +63,10 @@
         android:layout_marginEnd="158dp"
         android:layout_marginRight="158dp"
         android:layout_marginBottom="205dp"
-        android:text="Add"
+        android:text="@string/add_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quiz" />
+        app:layout_constraintTop_toBottomOf="@+id/quizstart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

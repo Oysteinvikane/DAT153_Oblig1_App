@@ -28,6 +28,7 @@ public class QuizActivity extends AppCompatActivity {
     private List<Person> items;
     private ImageView imageView;
     private String riktigSvar;
+    Button svarButton;
 
     private int score = 0;
     private ArrayList<Person> quizListe = new ArrayList<>();
@@ -48,7 +49,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
 
-        Button svarButton = (Button) findViewById(R.id.svarButton);
+        svarButton = (Button) findViewById(R.id.answerButton);
 
         svarButton.setOnClickListener(new View.OnClickListener() {
                                          @Override
