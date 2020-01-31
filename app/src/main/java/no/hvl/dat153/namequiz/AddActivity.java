@@ -21,7 +21,8 @@ import java.io.IOException;
 import no.hvl.dat153.namequiz.DatabaseList.Person;
 
 /**
- *
+ * This activity shows add view where user can add a
+ * item to the list from camera or photo gallery
  */
 public class AddActivity extends AppCompatActivity {
 
@@ -119,6 +120,7 @@ public class AddActivity extends AppCompatActivity {
 
     /**
      * opens photo gallery on phone
+     * and/or open camera
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
