@@ -1,3 +1,8 @@
+/**
+ * Quiz aktivitet.
+ * Klassen som står bak selve quizen i appen.
+*/
+
 package no.hvl.dat153.namequiz;
 
 import android.content.DialogInterface;
@@ -58,7 +63,7 @@ public class QuizActivity extends AppCompatActivity {
         showNextQuiz();
     }
 
-
+    // Metode som sender deg til neste spørsmål.
     public void showNextQuiz() {
 
         Random random = new Random();
@@ -73,15 +78,17 @@ public class QuizActivity extends AppCompatActivity {
         imageView.setImageBitmap(person.getImage());
 
     }
-
+    // Metode for å sjekke om svaret er riktig.
     public void checkAnswer() {
 
+        //Oppretter variablene
         EditText editText = findViewById(R.id.textInputEditText);
         String svar = editText.getText().toString();
 
         String title;
         String melding;
 
+        //Sjekker svar og utfører oppaver som skal gjøres om riktig/feil svar.
         if (riktigSvar.toLowerCase().equals(svar.toLowerCase())) {
             title = "Riktig svar";
             score++;
@@ -93,7 +100,7 @@ public class QuizActivity extends AppCompatActivity {
             melding = "Riktig svar er: " + riktigSvar;
 
         }
-
+        //Skriver ut varsel på skjermen med resultat.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(melding);
@@ -125,6 +132,7 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    //Metode som sender deg til MainActivity.
     private void moveToMainActivity() {
         Intent intent = new Intent(QuizActivity.this, MainActivity.class);
         startActivity(intent);

@@ -1,3 +1,9 @@
+/**
+ * Klassen som kjøres når man åpner appen.
+ * Inneholder metoder som aktiveres når knapper i appen trykkes.
+ */
+
+
 package no.hvl.dat153.namequiz;
 
 import android.content.Intent;
@@ -58,18 +64,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+        //Metode som sender deg til DatabaseActivity
         private void moveToDatabaseActivity() {
             Intent intent = new Intent(MainActivity.this, DatabaseListActivity.class);
             startActivity(intent);
         }
-
+        //Metode som sender deg til AddActivity
         private void moveToAddActivity() {
             Intent intent = new Intent(MainActivity.this, AddActivity.class);
             startActivity(intent);
         }
-
-    private void moveToQuizActivity() {
+        //Metode som sender deg til QuizActivity
+     private void moveToQuizActivity() {
             Intent intent = new Intent(MainActivity.this, QuizActivity.class);
             startActivity(intent);
 
