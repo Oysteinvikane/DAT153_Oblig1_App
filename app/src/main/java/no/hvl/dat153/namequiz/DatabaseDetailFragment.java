@@ -1,11 +1,12 @@
 package no.hvl.dat153.namequiz;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
@@ -25,7 +26,7 @@ public class DatabaseDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
-    Button deleteButton;
+    private ImageButton deleteButton;
 
     /**
      * The dummy content this fragment is presenting.
@@ -55,15 +56,18 @@ public class DatabaseDetailFragment extends Fragment {
                 appBarLayout.setTitle(mItem.name);
             }
 
-            deleteButton = (Button) findViewById(R.id.delete_button);
+            deleteButton = activity.findViewById(R.id.delete_button);
 
             deleteButton.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
                                                     DatabaseList.ITEMS.remove(mItem);
+                                                    moveToDatabaseActivity();
+
                                                 }
                                             }
             );
+
         }
     }
 
@@ -80,5 +84,10 @@ public class DatabaseDetailFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    private void moveToDatabaseActivity() {
+        Intent intent = new Intent(this.getActivity(), DatabaseListActivity.class);
+        startActivity(intent);
     }
 }
