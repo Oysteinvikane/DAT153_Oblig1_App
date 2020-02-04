@@ -3,6 +3,8 @@ package no.hvl.dat153.namequiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,10 +37,6 @@ public class DatabaseDetailActivity extends AppCompatActivity {
         // (e.g. when rotating the screen from portrait to landscape).
         // In this case, the fragment will automatically be re-added
         // to its container so we don't need to manually add it.
-        // For more information, see the Fragments API guide at:
-        //
-        // http://developer.android.com/guide/components/fragments.html
-        //
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
@@ -51,6 +49,8 @@ public class DatabaseDetailActivity extends AppCompatActivity {
                     .add(R.id.database_detail_container, fragment)
                     .commit();
         }
+
+
     }
 
 
