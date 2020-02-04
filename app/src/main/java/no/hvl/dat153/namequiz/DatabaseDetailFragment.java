@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 /**
@@ -55,6 +56,9 @@ public class DatabaseDetailFragment extends Fragment {
             if (appBarLayout != null) {
                 appBarLayout.setTitle(mItem.name);
             }
+
+            AppBarLayout appBarLayout1 = activity.findViewById(R.id.app_bar);
+            appBarLayout1.setExpanded(false, false);
 
             deleteButton = activity.findViewById(R.id.delete_button);
 
