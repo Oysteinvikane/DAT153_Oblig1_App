@@ -25,6 +25,8 @@ public class DatabaseDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
+    Button deleteButton;
+
     /**
      * The dummy content this fragment is presenting.
      */

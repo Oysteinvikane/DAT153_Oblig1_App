@@ -16,4 +16,5 @@
     <string name="quiz_text">Who is this?</string>
     <string name="score">Score:</string>
     <string name="answer_button">Submit</string>
+    <string name="delete_button">Delete entry</string>
 </resources>
