@@ -15,6 +15,15 @@
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <ImageButton
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/delete_button"
+            android:scaleType="center"
+            app:srcCompat="@drawable/trash_icon"
+            tools:visibility="visible" />
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="wrap_content"
@@ -23,15 +32,6 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
-
-            <ImageButton
-                android:id="@+id/delete_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/delete_button"
-                android:scaleType="center"
-                app:srcCompat="@drawable/trash_icon"
-                tools:visibility="visible" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/detail_toolbar"

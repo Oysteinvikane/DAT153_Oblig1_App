@@ -41,25 +41,9 @@ public class QuizActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageViewQuiz);
 
-
-
-
         for (int i = 0; i < DatabaseList.ITEMS.size(); i++) {
             quizList.add(DatabaseList.ITEMS.get(i));
         }
-
-
-        answerButton = (Button) findViewById(R.id.answerButton);
-
-        answerButton.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
-
-                                             checkAnswer();
-
-                                         }
-                                     }
-        );
 
         showNextQuiz();
     }
@@ -80,7 +64,7 @@ public class QuizActivity extends AppCompatActivity {
 
     }
     // Metode for å sjekke om svaret er riktig.
-    public void checkAnswer() {
+    public void checkAnswer(View view) {
 
         //Oppretter variablene
         EditText editText = findViewById(R.id.textInputEditText);
@@ -137,5 +121,6 @@ public class QuizActivity extends AppCompatActivity {
     private void moveToMainActivity() {
         Intent intent = new Intent(QuizActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }
