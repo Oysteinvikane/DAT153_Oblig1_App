@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
 
-import no.hvl.dat153.namequiz.DatabaseList.Person;
 
 public class InitialDataApp extends Application {
     @Override

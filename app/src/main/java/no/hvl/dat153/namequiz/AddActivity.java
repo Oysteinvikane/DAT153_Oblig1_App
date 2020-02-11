@@ -19,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import no.hvl.dat153.namequiz.DatabaseList.Person;
-
 /**
  * This activity shows add view where user can add a
  * item to the list from camera or photo gallery

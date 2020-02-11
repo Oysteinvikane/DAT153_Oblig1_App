@@ -29,7 +29,7 @@ public class DatabaseDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DatabaseList.Person mItem;
+    private Person mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -51,7 +51,7 @@ public class DatabaseDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.name);
+                appBarLayout.setTitle(mItem.getName());
             }
             FloatingActionButton fab = (FloatingActionButton) activity.findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class DatabaseDetailFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), DatabaseListActivity.class);
         startActivity(intent);
     }
-    public void deleteItem(DatabaseList.Person item) {
+    public void deleteItem(Person item) {
         DatabaseList.ITEMS.remove(item);
 
     }

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         inputLayout = findViewById(R.id.nameInputLayout);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        
+        editor = sharedPreferences.edit();
 
         updateView();
 

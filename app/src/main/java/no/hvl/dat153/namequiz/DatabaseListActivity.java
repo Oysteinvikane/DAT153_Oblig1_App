@@ -109,15 +109,15 @@ public class DatabaseListActivity extends AppCompatActivity {
         private int itemCount = 0;
 
         private final DatabaseListActivity mParentActivity;
-        private final List<DatabaseList.Person> mValues;
+        private final List<Person> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseList.Person item = (DatabaseList.Person) view.getTag();
+                Person item = (Person) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(DatabaseDetailFragment.ARG_ITEM_ID, item.id);
+                    arguments.putString(DatabaseDetailFragment.ARG_ITEM_ID, item.getId());
                     DatabaseDetailFragment fragment = new DatabaseDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -126,7 +126,7 @@ public class DatabaseListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, DatabaseDetailActivity.class);
-                    intent.putExtra(DatabaseDetailFragment.ARG_ITEM_ID, item.id);
+                    intent.putExtra(DatabaseDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
                 }
@@ -136,7 +136,7 @@ public class DatabaseListActivity extends AppCompatActivity {
 
 
         SimpleItemRecyclerViewAdapter(DatabaseListActivity parent,
-                                      List<DatabaseList.Person> items,
+                                      List<Person> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
@@ -154,7 +154,7 @@ public class DatabaseListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mIdView.setText(String.valueOf(mValues.indexOf(mValues.get(position)) + 1));
-            holder.mContentView.setText(mValues.get(position).name);
+            holder.mContentView.setText(mValues.get(position).getName());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
