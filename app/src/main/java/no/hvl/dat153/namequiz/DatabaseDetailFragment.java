@@ -6,16 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
- * A fragment representing a single Database detail screen.
+ * A fragment representing a single Item detail screen.
  * This fragment is either contained in a {@link DatabaseListActivity}
  * in two-pane mode (on tablets) or a {@link DatabaseDetailActivity}
  * on handsets.
@@ -26,8 +25,6 @@ public class DatabaseDetailFragment extends Fragment {
      * represents.
      */
     public static final String ARG_ITEM_ID = "item_id";
-
-    private ImageButton deleteButton;
 
     /**
      * The dummy content this fragment is presenting.
@@ -56,23 +53,17 @@ public class DatabaseDetailFragment extends Fragment {
             if (appBarLayout != null) {
                 appBarLayout.setTitle(mItem.name);
             }
+            FloatingActionButton fab = (FloatingActionButton) activity.findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteItem(mItem);
+                    moveToDatabaseActivity();
 
-            AppBarLayout appBarLayout1 = activity.findViewById(R.id.app_bar);
-            appBarLayout1.setExpanded(false, false);
-
-            deleteButton = activity.findViewById(R.id.delete_button);
-
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    DatabaseList.ITEMS.remove(mItem);
-                                                    moveToDatabaseActivity();
-
-                                                }
-                                            }
-            );
-
+                }
+            });
         }
+
     }
 
     @Override
@@ -81,17 +72,19 @@ public class DatabaseDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.database_detail, container, false);
 
         // Show the dummy content as text in a TextView.
-
         if (mItem != null) {
-           ImageView im = ((ImageView) rootView.findViewById(R.id.database_detail));
-           im.setImageBitmap(mItem.getImage());
+            ImageView im = ((ImageView) rootView.findViewById(R.id.database_detail));
+            im.setImageBitmap(mItem.getImage());
         }
 
         return rootView;
     }
-
     private void moveToDatabaseActivity() {
         Intent intent = new Intent(this.getActivity(), DatabaseListActivity.class);
         startActivity(intent);
+    }
+    private void deleteItem(DatabaseList.Person item) {
+        DatabaseList.ITEMS.remove(item);
+
     }
 }

@@ -31,51 +31,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        databaseButton = findViewById(R.id.quiz_list);
-
-        databaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                moveToDatabaseActivity();
-
-            }
-        });
-
-        quizButton = findViewById(R.id.quizstart);
-
-        quizButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                moveToQuizActivity();
-
-            }
-        });
-
-        addButton = findViewById(R.id.add);
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                moveToAddActivity();
-
-            }
-        });
     }
         //Metode som sender deg til DatabaseActivity
-        private void moveToDatabaseActivity() {
+        public void moveToDatabaseActivity(View view) {
             Intent intent = new Intent(MainActivity.this, DatabaseListActivity.class);
             startActivity(intent);
         }
         //Metode som sender deg til AddActivity
-        private void moveToAddActivity() {
+        public void moveToAddActivity(View view) {
             Intent intent = new Intent(MainActivity.this, AddActivity.class);
             startActivity(intent);
         }
         //Metode som sender deg til QuizActivity
-     private void moveToQuizActivity() {
+     public void moveToQuizActivity(View view) {
             Intent intent = new Intent(MainActivity.this, QuizActivity.class);
             startActivity(intent);
 

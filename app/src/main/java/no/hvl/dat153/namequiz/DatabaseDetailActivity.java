@@ -3,16 +3,16 @@ package no.hvl.dat153.namequiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
+import com.google.android.material.appbar.AppBarLayout;
+
 /**
- * An activity representing a single Database detail screen. This
+ * An activity representing a single Item detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link DatabaseListActivity}.
@@ -26,17 +26,25 @@ public class DatabaseDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
+
+
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        AppBarLayout appBarLayout1 = findViewById(R.id.app_bar);
+        appBarLayout1.setExpanded(false, false);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
         // (e.g. when rotating the screen from portrait to landscape).
         // In this case, the fragment will automatically be re-added
         // to its container so we don't need to manually add it.
+        // For more information, see the Fragments API guide at:
+        //
+        // http://developer.android.com/guide/components/fragments.html
+        //
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
@@ -46,13 +54,10 @@ public class DatabaseDetailActivity extends AppCompatActivity {
             DatabaseDetailFragment fragment = new DatabaseDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.database_detail_container, fragment)
+                    .add(R.id.item_detail_container, fragment)
                     .commit();
         }
-
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
