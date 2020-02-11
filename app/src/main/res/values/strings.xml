@@ -17,4 +17,7 @@
     <string name="score">Score:</string>
     <string name="answer_button">Submit</string>
     <string name="delete_button">Delete entry</string>
+    <string name="update_name">Name</string>
+    <string name="update_button">Update Name</string>
+
 </resources>
