@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView usernameTextView;
     private TextInputLayout inputLayout;
     private SharedPreferences.Editor editor;
-    private String user;
     /**
      *
      * @param savedInstanceState
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         inputLayout = findViewById(R.id.nameInputLayout);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        
+        editor = sharedPreferences.edit();
 
         updateView();
 
