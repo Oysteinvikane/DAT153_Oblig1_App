@@ -71,7 +71,6 @@ public class DatabaseDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.database_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
         if (mItem != null) {
             ImageView im = ((ImageView) rootView.findViewById(R.id.database_detail));
             im.setImageBitmap(mItem.getImage());
@@ -83,7 +82,7 @@ public class DatabaseDetailFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), DatabaseListActivity.class);
         startActivity(intent);
     }
-    private void deleteItem(DatabaseList.Person item) {
+    public void deleteItem(DatabaseList.Person item) {
         DatabaseList.ITEMS.remove(item);
 
     }

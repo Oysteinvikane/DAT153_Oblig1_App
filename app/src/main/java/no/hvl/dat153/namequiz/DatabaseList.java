@@ -32,7 +32,7 @@ public class DatabaseList {
      * Person class for storing a person in the database
      */
     public static class Person {
-        public final String id;
+        public String id;
         public final String name;
         public final Bitmap image;
 
@@ -48,6 +48,10 @@ public class DatabaseList {
         }
         public Bitmap getImage() {
             return image;
+        }
+        public void setId(String id) {
+            this.id = id;
+
         }
     }
 }
