@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".PreferencesActivity"
+            android:label="@string/title_activity_preferences"></activity>
+        <activity
             android:name=".DatabaseDetailActivity"
             android:label="@string/title_item_detail"
             android:parentActivityName=".ItemListActivity"

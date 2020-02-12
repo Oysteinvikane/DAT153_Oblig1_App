@@ -7,9 +7,10 @@ package no.hvl.dat153.namequiz;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +29,11 @@ public class QuizActivity extends AppCompatActivity {
     private List<Person> items;
     private ImageView imageView;
     private String correctAnswer;
-    Button answerButton;
+    private SharedPreferences sharedPreferences;
+    private boolean showScore;
+    private TextView textScore;
+    private TextView numberScore;
+    private boolean scoreEnabled;
 
     private int score = 0;
     private ArrayList<Person> quizList = new ArrayList<>();
@@ -40,9 +45,18 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         imageView = findViewById(R.id.imageViewQuiz);
+        textScore = findViewById(R.id.textScore);
+        numberScore = findViewById(R.id.score);
 
         for (int i = 0; i < DatabaseList.ITEMS.size(); i++) {
             quizList.add(DatabaseList.ITEMS.get(i));
+        }
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        showScore = sharedPreferences.getBoolean("showScore", true);
+        scoreEnabled = sharedPreferences.getBoolean("scoreEnabled", true);
+        if (!showScore || !scoreEnabled) {
+            textScore.setVisibility(View.INVISIBLE);
+            numberScore.setVisibility(View.INVISIBLE);
         }
 
         showNextQuiz();
@@ -74,7 +88,7 @@ public class QuizActivity extends AppCompatActivity {
         String message;
 
         //Sjekker svar og utfører oppaver som skal gjøres om riktig/feil svar.
-        if (correctAnswer.toLowerCase().equals(svar.toLowerCase())) {
+         if (correctAnswer.toLowerCase().equals(svar.toLowerCase())) {
             title = "Correct answer";
             score++;
             TextView textScore = findViewById(R.id.score);
@@ -85,6 +99,13 @@ public class QuizActivity extends AppCompatActivity {
             message = "Correct answer is: " + correctAnswer;
 
         }
+        if (quizList.size() < 1) {
+            title = "Quiz finished";
+            if (scoreEnabled)
+                message = "Your score: " + score;
+            else
+                message = "Quiz taken without score";
+        }
         //Skriver ut varsel på skjermen med resultat.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
@@ -93,19 +114,9 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (quizList.size() < 1) {
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(QuizActivity.this);
-                    builder1.setTitle("Quiz finished");
-                    builder1.setMessage("Your score: " + score);
-                    builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
                             moveToMainActivity();
                         }
-                    });
-                    builder1.setCancelable(false);
-                    builder1.show();
-
-                } else {
+                else {
                     showNextQuiz();
                 }
             }

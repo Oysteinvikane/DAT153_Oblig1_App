@@ -19,5 +19,20 @@
     <string name="delete_button">Delete entry</string>
     <string name="update_name">Name</string>
     <string name="update_button">Update Name</string>
+    <string name="title_activity_preferences">Preferences</string>
+
+    <!-- Preference Titles -->
+    <string name="private_header">Private settings</string>
+    <string name="quiz_header">Quiz settings</string>
+
+    <!-- Messages Preferences -->
+    <string name="username_title">Username</string>
+    <string name="reply_title">Store uploads in database for future use</string>
+
+    <!-- Sync Preferences -->
+    <string name="score_enabled_title">Take quiz with score</string>
+    <string name="showScore_title">Show score </string>
+    <string name="score_on">Shows score in top right hand corner of quiz</string>
+    <string name="score_off">Not showing score </string>
 
 </resources>

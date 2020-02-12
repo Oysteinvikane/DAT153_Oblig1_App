@@ -66,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
     }
+    public void moveToPreferencesActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
+        startActivity(intent);
+
+    }
     public void updateView() {
         String username = sharedPreferences.getString("username", null);
         if (username != null) {

@@ -37,7 +37,6 @@ public class DatabaseListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-    private static boolean firstRun = true;
 
 
     @Override
