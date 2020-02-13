@@ -35,10 +35,4 @@ public class Person {
     public byte[] getImage() {
         return image;
     }
-
-
-    @Override
-    public String toString() {
-        return name;
-    }
 }

@@ -21,9 +21,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class QuizActivity extends AppCompatActivity {
+
+    public static int randNum;
 
     private ImageView imageView;
     private String correctAnswer;
@@ -66,17 +69,17 @@ public class QuizActivity extends AppCompatActivity {
 
     // Metode som sender deg til neste spørsmål.
     public void showNextQuiz() {
-        /*
+
         Random random = new Random();
-        int randNum = random.nextInt(quizList.size());
+        randNum = random.nextInt(quizList.size());
 
         Person person = quizList.get(randNum);
 
-         */
-        Person person = quizList.get(next);
+
+        //Person person = quizList.get(next);
         quizList.remove(person);
 
-        correctAnswer = person.toString();
+        correctAnswer = person.getName();
 
         Bitmap bitmap = convertToBitmap(person.getImage());
         imageView.setImageBitmap(bitmap);

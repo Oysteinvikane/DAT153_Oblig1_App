@@ -4,7 +4,6 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,23 +24,14 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class QuizTest {
 
 
-    private String rightAnswer;
-    private String wrongAnswer;
-
     @Rule
     public ActivityTestRule<QuizActivity> activityRule = new ActivityTestRule(QuizActivity.class);
 
-
-    @Before
-    public void initString() {
-        rightAnswer = "Kjetil";
-        wrongAnswer = "Oystein";
-    }
-
     @Test
     public void scoreIsCorrect() {
+        int num = QuizActivity.randNum;
         onView(withId(R.id.score)).check(matches(withSubstring("0")));
-        onView(withId(R.id.textInputEditText)).perform(typeText(rightAnswer), closeSoftKeyboard());
+        onView(withId(R.id.textInputEditText)).perform(typeText(DatabaseList.ITEMS.get(num).getName()), closeSoftKeyboard());
         onView(withId(R.id.answerButton)).perform(click());
         onView(withText("OK"))
                 .inRoot(isDialog())
@@ -54,7 +44,7 @@ public class QuizTest {
     @Test
     public void scoreIsNotCorrect() {
         onView(withId(R.id.score)).check(matches(withSubstring("0")));
-        onView(withId(R.id.textInputEditText)).perform(typeText(wrongAnswer), closeSoftKeyboard());
+        onView(withId(R.id.textInputEditText)).perform(typeText("blablabls"), closeSoftKeyboard());
         onView(withId(R.id.answerButton)).perform(click());
         onView(withText("OK"))
                 .inRoot(isDialog())
