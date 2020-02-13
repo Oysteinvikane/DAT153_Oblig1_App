@@ -33,7 +33,7 @@ public class AddActivity extends AppCompatActivity {
 
     private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
 
-    PersonDao personDao = MainActivity.roomDBQuiz.personDAO();
+    PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
 
     /**
      * creates a view for the add activity
@@ -103,7 +103,6 @@ public class AddActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageViewQuiz);
         EditText editText = findViewById(R.id.newName);
-        byte [] image = convertToByteArray(bitmap);
         String result = editText.getText().toString();
         if (imageView.getDrawable() == null || result.matches("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -124,8 +123,9 @@ public class AddActivity extends AppCompatActivity {
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         byte[] byteIMG = convertToByteArray(bitmap);
 
-        Person p = new Person((DatabaseList.ITEMS.size() + 1), result, byteIMG);
+        Person p = new Person(DatabaseList.ITEMS.size() + 1, result, byteIMG);
         personDao.insertPerson(p);
+        DatabaseList.addItem(p);
         moveToMainActivity();
 
     }

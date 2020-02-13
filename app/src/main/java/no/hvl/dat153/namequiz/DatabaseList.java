@@ -1,6 +1,5 @@
 package no.hvl.dat153.namequiz;
 
-import no.hvl.dat153.namequiz.Person;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +23,6 @@ public class DatabaseList {
 
     public static void addItem(Person item) {
         ITEMS.add(item);
-        ITEM_MAP.put(String.valueOf(item.getId()), item);
+        ITEM_MAP.put(String.valueOf(item.id), item);
     }
 }

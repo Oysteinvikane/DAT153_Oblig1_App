@@ -32,7 +32,7 @@ public class QuizActivity extends AppCompatActivity {
     Button answerButton;
 
     private int score = 0;
-    final PersonDao personDao = MainActivity.roomDBQuiz.personDAO();
+    final PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
     final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
 
     @Override

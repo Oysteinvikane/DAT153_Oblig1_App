@@ -1,7 +1,5 @@
 package no.hvl.dat153.namequiz;
 
-import android.graphics.Bitmap;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -12,7 +10,9 @@ public class Person {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "imageId")
-    private int id;
+    public int id;
+
+
 
     @ColumnInfo(name = "name")
     private String name;
@@ -22,10 +22,6 @@ public class Person {
         this.id = id;
         this.name = name;
         this.image = image;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
@@ -39,6 +35,7 @@ public class Person {
     public byte[] getImage() {
         return image;
     }
+
 
     @Override
     public String toString() {

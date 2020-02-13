@@ -9,16 +9,23 @@ import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import androidx.room.Room;
+
 import java.util.ArrayList;
 
 
 public class InitialDataApp extends Application {
+
+    public static RoomDBQuiz roomDBQuiz;
+
+
     @Override
     public void onCreate() {
 
         super.onCreate();
 
         //Lager Bitmap av bildene
+
         Bitmap image1 = BitmapFactory.decodeResource(getResources(), R.drawable.pic1);
         Bitmap image2 = BitmapFactory.decodeResource(getResources(), R.drawable.pic2);
         Bitmap image3 = BitmapFactory.decodeResource(getResources(), R.drawable.pic3);
@@ -32,9 +39,20 @@ public class InitialDataApp extends Application {
         byte[] byte2 = AddActivity.convertToByteArray(bm2);
         byte[] byte3 = AddActivity.convertToByteArray(bm3);
 
+
         //Legger bildene til i databaselist.
         DatabaseList.addItem(new Person(DatabaseList.ITEMS.size() + 1, "Kjetil", byte1));
         DatabaseList.addItem(new Person(DatabaseList.ITEMS.size() + 1, "Øystein", byte2));
         DatabaseList.addItem(new Person(DatabaseList.ITEMS.size() + 1, "Vilhelm", byte3));
+
+        roomDBQuiz = Room.databaseBuilder(getApplicationContext(), RoomDBQuiz.class, "persondb").allowMainThreadQueries().build();
+
+        final PersonDao personDao = roomDBQuiz.personDAO();
+        final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
+
+        for (Person p : persons) {
+            DatabaseList.addItem(p);
+        }
+
     }
 }

@@ -2,6 +2,7 @@ package no.hvl.dat153.namequiz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -74,7 +75,9 @@ public class DatabaseDetailFragment extends Fragment {
 
         if (mItem != null) {
             ImageView im = ((ImageView) rootView.findViewById(R.id.database_detail));
-            im.setImageBitmap(BitmapFactory.decodeByteArray(mItem.getImage(), 0, mItem.getImage().length));
+            Bitmap bm = BitmapFactory.decodeByteArray(mItem.getImage(), 0, mItem.getImage().length);
+
+            im.setImageBitmap(Bitmap.createScaledBitmap(bm, 1000, 1333, true));
         }
 
         return rootView;
@@ -84,7 +87,7 @@ public class DatabaseDetailFragment extends Fragment {
         startActivity(intent);
     }
 
-    final PersonDao personDao = MainActivity.roomDBQuiz.personDAO();
+    final PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
 
     public void deleteItem(Person item) {
         DatabaseList.ITEMS.remove(item);
