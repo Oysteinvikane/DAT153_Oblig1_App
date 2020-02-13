@@ -33,6 +33,8 @@
             android:id="@+id/newName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
             android:hint="@string/name_field" />
     </com.google.android.material.textfield.TextInputLayout>
 

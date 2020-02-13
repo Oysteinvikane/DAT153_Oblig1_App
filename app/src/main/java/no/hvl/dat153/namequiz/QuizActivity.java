@@ -1,10 +1,11 @@
 /**
  * Quiz aktivitet.
  * Klassen som står bak selve quizen i appen.
-*/
+ */
 
 package no.hvl.dat153.namequiz;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,12 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import no.hvl.dat153.namequiz.DatabaseList.Person;
 
@@ -34,6 +33,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textScore;
     private TextView numberScore;
     private boolean scoreEnabled;
+    private int next;
 
     private int score = 0;
     private ArrayList<Person> quizList = new ArrayList<>();
@@ -47,6 +47,9 @@ public class QuizActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageViewQuiz);
         textScore = findViewById(R.id.textScore);
         numberScore = findViewById(R.id.score);
+
+        next = 0;
+
 
         for (int i = 0; i < DatabaseList.ITEMS.size(); i++) {
             quizList.add(DatabaseList.ITEMS.get(i));
@@ -64,12 +67,14 @@ public class QuizActivity extends AppCompatActivity {
 
     // Metode som sender deg til neste spørsmål.
     public void showNextQuiz() {
-
+        /*
         Random random = new Random();
         int randNum = random.nextInt(quizList.size());
 
         Person person = quizList.get(randNum);
 
+         */
+        Person person = quizList.get(next);
         quizList.remove(person);
 
         correctAnswer = person.toString();
@@ -77,22 +82,23 @@ public class QuizActivity extends AppCompatActivity {
         imageView.setImageBitmap(person.getImage());
 
     }
+
     // Metode for å sjekke om svaret er riktig.
     public void checkAnswer(View view) {
 
         //Oppretter variablene
         EditText editText = findViewById(R.id.textInputEditText);
         String svar = editText.getText().toString();
+        editText.setText("");
 
         String title;
         String message;
 
         //Sjekker svar og utfører oppaver som skal gjøres om riktig/feil svar.
-         if (correctAnswer.toLowerCase().equals(svar.toLowerCase())) {
+        if (correctAnswer.toLowerCase().equals(svar.toLowerCase())) {
             title = "Correct answer";
             score++;
-            TextView textScore = findViewById(R.id.score);
-            textScore.setText(String.valueOf(score));
+            numberScore.setText(String.valueOf(score));
             message = "Good job!";
         } else {
             title = "Wrong answer...";
@@ -107,6 +113,7 @@ public class QuizActivity extends AppCompatActivity {
                 message = "Quiz taken without score";
         }
         //Skriver ut varsel på skjermen med resultat.
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -118,6 +125,7 @@ public class QuizActivity extends AppCompatActivity {
                         }
                 else {
                     showNextQuiz();
+
                 }
             }
         });
@@ -125,6 +133,8 @@ public class QuizActivity extends AppCompatActivity {
 
         builder.setCancelable(false);
         builder.show();
+
+
 
     }
 
