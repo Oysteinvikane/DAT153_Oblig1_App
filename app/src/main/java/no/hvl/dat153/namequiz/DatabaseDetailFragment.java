@@ -2,6 +2,7 @@ package no.hvl.dat153.namequiz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,7 +74,7 @@ public class DatabaseDetailFragment extends Fragment {
 
         if (mItem != null) {
             ImageView im = ((ImageView) rootView.findViewById(R.id.database_detail));
-            im.setImageBitmap(mItem.getImage());
+            im.setImageBitmap(BitmapFactory.decodeByteArray(mItem.getImage(), 0, mItem.getImage().length));
         }
 
         return rootView;

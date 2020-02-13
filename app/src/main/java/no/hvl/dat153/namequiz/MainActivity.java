@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        roomDBQuiz = Room.databaseBuilder(getApplicationContext(), RoomDBQuiz.class, "persondb").allowMainThreadQueries().build();
 
         usernameEditText = findViewById(R.id.usernameEditText);
         usernameTextView = findViewById(R.id.appName);

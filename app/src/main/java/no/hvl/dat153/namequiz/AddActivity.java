@@ -130,7 +130,7 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    public byte[] convertToByteArray(Bitmap bitmap) {
+    public static byte[] convertToByteArray(Bitmap bitmap) {
 
         ByteArrayOutputStream blob = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
