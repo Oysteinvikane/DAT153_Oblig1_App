@@ -16,10 +16,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import no.hvl.dat153.namequiz.DatabaseList.Person;
 
 /**
  * This activity shows add view where user can add a
@@ -30,6 +29,8 @@ public class AddActivity extends AppCompatActivity {
     private static int REQUEST_IMAGE_CAPTURE = 0;
     private static int RESULT_LOAD_IMAGE = 1;
     Button addButton, addPersonButton, cameraButton;
+    private Bitmap bitmap;
+    private PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
 
     private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
 
@@ -120,11 +121,22 @@ public class AddActivity extends AppCompatActivity {
         }
 
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        byte[] byteIMG = convertToByteArray(bitmap);
 
-        Person p = new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), result, bitmap);
+        Person p = new Person(DatabaseList.ITEMS.size() + 1, result, byteIMG);
+        personDao.insertPerson(p);
         DatabaseList.addItem(p);
         moveToMainActivity();
 
+    }
+
+    public static byte[] convertToByteArray(Bitmap bitmap) {
+
+        ByteArrayOutputStream blob = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
+        byte[] bitmapdata = blob.toByteArray();
+
+        return bitmapdata;
     }
 
     /**

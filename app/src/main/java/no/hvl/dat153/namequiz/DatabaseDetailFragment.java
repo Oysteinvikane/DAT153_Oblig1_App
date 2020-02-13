@@ -2,6 +2,8 @@ package no.hvl.dat153.namequiz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +31,7 @@ public class DatabaseDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DatabaseList.Person mItem;
+    private Person mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -51,7 +53,7 @@ public class DatabaseDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.name);
+                appBarLayout.setTitle(mItem.getName());
             }
             FloatingActionButton fab = (FloatingActionButton) activity.findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +75,8 @@ public class DatabaseDetailFragment extends Fragment {
 
         if (mItem != null) {
             ImageView im = ((ImageView) rootView.findViewById(R.id.database_detail));
-            im.setImageBitmap(mItem.getImage());
+            Bitmap bm = BitmapFactory.decodeByteArray(mItem.getImage(), 0, mItem.getImage().length);
+            im.setImageBitmap(bm);
         }
 
         return rootView;
@@ -82,8 +85,10 @@ public class DatabaseDetailFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), DatabaseListActivity.class);
         startActivity(intent);
     }
-    public void deleteItem(DatabaseList.Person item) {
+    public void deleteItem(Person item) {
+        final PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
         DatabaseList.ITEMS.remove(item);
+        personDao.deletePerson(item);
 
     }
 }

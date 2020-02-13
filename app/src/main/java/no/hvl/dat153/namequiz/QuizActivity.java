@@ -9,6 +9,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -19,13 +21,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import no.hvl.dat153.namequiz.DatabaseList.Person;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private List<Person> items;
     private ImageView imageView;
     private String correctAnswer;
     private SharedPreferences sharedPreferences;
@@ -79,7 +78,8 @@ public class QuizActivity extends AppCompatActivity {
 
         correctAnswer = person.toString();
 
-        imageView.setImageBitmap(person.getImage());
+        Bitmap bitmap = convertToBitmap(person.getImage());
+        imageView.setImageBitmap(bitmap);
 
     }
 
@@ -143,5 +143,9 @@ public class QuizActivity extends AppCompatActivity {
         Intent intent = new Intent(QuizActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public Bitmap convertToBitmap(byte[] byteArray) {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
     }
 }
