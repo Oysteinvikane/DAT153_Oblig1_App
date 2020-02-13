@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -28,9 +29,11 @@ public class AddActivity extends AppCompatActivity {
     private static int REQUEST_IMAGE_CAPTURE = 0;
     private static int RESULT_LOAD_IMAGE = 1;
     Button addButton, addPersonButton, cameraButton;
+    private Bitmap bitmap;
 
     private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
 
+    PersonDao personDao = MainActivity.roomDBQuiz.personDAO();
 
     /**
      * creates a view for the add activity
@@ -100,6 +103,7 @@ public class AddActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageViewQuiz);
         EditText editText = findViewById(R.id.newName);
+        byte [] image = convertToByteArray(bitmap);
         String result = editText.getText().toString();
         if (imageView.getDrawable() == null || result.matches("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -118,11 +122,21 @@ public class AddActivity extends AppCompatActivity {
         }
 
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        byte[] byteIMG = convertToByteArray(bitmap);
 
-        Person p = new Person(String.valueOf(DatabaseList.ITEMS.size() + 1), result, bitmap);
-        DatabaseList.addItem(p);
+        Person p = new Person((DatabaseList.ITEMS.size() + 1), result, byteIMG);
+        personDao.insertPerson(p);
         moveToMainActivity();
 
+    }
+
+    public byte[] convertToByteArray(Bitmap bitmap) {
+
+        ByteArrayOutputStream blob = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
+        byte[] bitmapdata = blob.toByteArray();
+
+        return bitmapdata;
     }
 
     /**

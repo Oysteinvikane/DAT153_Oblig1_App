@@ -2,45 +2,42 @@ package no.hvl.dat153.namequiz;
 
 import android.graphics.Bitmap;
 
-//@Entity(tableName = "person")
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "person")
 public class Person {
 
-  //  @PrimaryKey(autoGenerate = true)
-  //  @ColumnInfo(name = "imageId")
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "imageId")
+    private int id;
 
-  //  @ColumnInfo(name = "name")
+    @ColumnInfo(name = "name")
     private String name;
-    private Bitmap image;
+    private byte[] image;
 
-    public Person(String id, String name, Bitmap image) {
+    public Person(int id, String name, byte[] image) {
         this.id = id;
         this.name = name;
         this.image = image;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
-    public Bitmap getImage() {
+    public byte[] getImage() {
         return image;
-    }
-
-    public void setBitmap(Bitmap id) {
-        this.image = id;
     }
 
     @Override

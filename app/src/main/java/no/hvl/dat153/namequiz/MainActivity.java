@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout inputLayout;
     private SharedPreferences.Editor editor;
     private String user;
+
+    public static RoomDBQuiz roomDBQuiz;
     /**
      *
      * @param savedInstanceState
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
+
+
 
         updateView();
 

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class DatabaseListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-    private static boolean firstRun = true;
+
 
 
     @Override
@@ -110,6 +111,8 @@ public class DatabaseListActivity extends AppCompatActivity {
 
         private final DatabaseListActivity mParentActivity;
         private final List<Person> mValues;
+        final PersonDao personDao = MainActivity.roomDBQuiz.personDAO();
+        final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
@@ -117,7 +120,7 @@ public class DatabaseListActivity extends AppCompatActivity {
                 Person item = (Person) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(DatabaseDetailFragment.ARG_ITEM_ID, item.getId());
+                    arguments.putString(DatabaseDetailFragment.ARG_ITEM_ID, String.valueOf(item.getId()));
                     DatabaseDetailFragment fragment = new DatabaseDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()

@@ -16,6 +16,7 @@ public class DatabaseList {
     /**
      * An array of person items.
      */
+
     public static final List<Person> ITEMS = new ArrayList<Person>();
 
 
@@ -23,6 +24,6 @@ public class DatabaseList {
 
     public static void addItem(Person item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.getId(), item);
+        ITEM_MAP.put(String.valueOf(item.getId()), item);
     }
 }

@@ -7,6 +7,8 @@ package no.hvl.dat153.namequiz;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +32,8 @@ public class QuizActivity extends AppCompatActivity {
     Button answerButton;
 
     private int score = 0;
-    private ArrayList<Person> quizList = new ArrayList<>();
+    final PersonDao personDao = MainActivity.roomDBQuiz.personDAO();
+    final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +44,33 @@ public class QuizActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageViewQuiz);
 
         for (int i = 0; i < DatabaseList.ITEMS.size(); i++) {
-            quizList.add(DatabaseList.ITEMS.get(i));
+            persons.add(DatabaseList.ITEMS.get(i));
         }
 
+
         showNextQuiz();
+
+    }
+
+    public Bitmap convertToBitmap(byte[] byteArray) {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
     }
 
     // Metode som sender deg til neste spørsmål.
     public void showNextQuiz() {
 
         Random random = new Random();
-        int randNum = random.nextInt(quizList.size());
+        int randNum = random.nextInt(persons.size());
 
-        Person person = quizList.get(randNum);
+        Person person = persons.get(randNum);
 
-        quizList.remove(person);
+        persons.remove(person);
 
         correctAnswer = person.toString();
 
-        imageView.setImageBitmap(person.getImage());
+        Bitmap bitmap = convertToBitmap(DatabaseList.ITEMS.get(randNum).getImage());
+        imageView.setImageBitmap(bitmap);
+
 
     }
     // Metode for å sjekke om svaret er riktig.
@@ -91,7 +102,7 @@ public class QuizActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (quizList.size() < 1) {
+                if (persons.size() < 1) {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(QuizActivity.this);
                     builder1.setTitle("Quiz finished");
                     builder1.setMessage("Your score: " + score);
