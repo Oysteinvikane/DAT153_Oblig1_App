@@ -29,7 +29,6 @@ public class AddActivity extends AppCompatActivity {
     private static int REQUEST_IMAGE_CAPTURE = 0;
     private static int RESULT_LOAD_IMAGE = 1;
     Button addButton, addPersonButton, cameraButton;
-    private Bitmap bitmap;
     private PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
 
     private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
