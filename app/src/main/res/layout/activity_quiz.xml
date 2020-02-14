@@ -13,6 +13,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/quiz_text"
         android:textSize="36sp"
+        android:textColor="@color/myBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +43,9 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="5dp"
         android:text="@string/answer_button"
+        android:textColor="@color/backround"
         android:onClick="checkAnswer"
+        android:background="@drawable/mybutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -55,6 +58,7 @@
         android:layout_marginLeft="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
+        android:textColorHint="@color/myBlue"
         app:layout_constraintBottom_toTopOf="@+id/answerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -78,6 +82,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:text="@string/score"
+        android:textColor="@color/myBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toEndOf="@+id/quizText"
@@ -91,6 +96,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="0"
+        android:textColor="@color/myBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textScore"
