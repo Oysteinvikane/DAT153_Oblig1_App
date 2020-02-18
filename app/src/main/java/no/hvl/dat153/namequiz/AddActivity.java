@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -29,13 +30,15 @@ public class AddActivity extends AppCompatActivity {
     private static int REQUEST_IMAGE_CAPTURE = 0;
     private static int RESULT_LOAD_IMAGE = 1;
     Button addButton, addPersonButton, cameraButton;
+    private String store;
     private PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
 
-    private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
+    private String[] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW", "android.permission.CAMERA"};
 
 
     /**
      * creates a view for the add activity
+     *
      * @param savedInstanceState
      */
     @Override
@@ -51,6 +54,8 @@ public class AddActivity extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.uploadPic);
         addPersonButton = (Button) findViewById(R.id.addNewPerson);
         cameraButton = (Button) findViewById(R.id.camera_button);
+
+        store = PreferenceManager.getDefaultSharedPreferences(this).getString("store", null);
 
         addButton.setOnClickListener(new View.OnClickListener() {
                                          @Override
@@ -120,11 +125,12 @@ public class AddActivity extends AppCompatActivity {
             return;
         }
 
-        Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         byte[] byteIMG = convertToByteArray(bitmap);
 
         Person p = new Person(DatabaseList.ITEMS.size() + 1, result, byteIMG);
-        personDao.insertPerson(p);
+        if (store.equals("yes"))
+            personDao.insertPerson(p);
         DatabaseList.addItem(p);
         moveToMainActivity();
 
@@ -159,11 +165,11 @@ public class AddActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap bitmap = (Bitmap) extras.get("data");
             imageToUpload.setImageBitmap(bitmap);
 
         }
     }
-    }
+}
