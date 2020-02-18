@@ -92,6 +92,7 @@ public class AddActivity extends AppCompatActivity {
     private void moveToMainActivity() {
         Intent intent = new Intent(AddActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

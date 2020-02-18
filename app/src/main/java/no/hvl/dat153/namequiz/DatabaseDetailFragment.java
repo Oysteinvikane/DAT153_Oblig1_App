@@ -89,6 +89,13 @@ public class DatabaseDetailFragment extends Fragment {
         final PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
         DatabaseList.ITEMS.remove(item);
         personDao.deletePerson(item);
+        Intent i = new Intent(this.getContext(), DatabaseListActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("EXIT", true);
+        startActivity(i);
+        this.getActivity().finish();
 
     }
 }
