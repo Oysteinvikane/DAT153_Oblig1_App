@@ -36,9 +36,9 @@ public class InitialDataApp extends Application {
 
 
         //Legger bildene til i databaselist.
-        DatabaseList.addItem(new Person(DatabaseList.ITEMS.size() + 1, "Kjetil", byte1));
-        DatabaseList.addItem(new Person(DatabaseList.ITEMS.size() + 1, "Øystein", byte2));
-        DatabaseList.addItem(new Person(DatabaseList.ITEMS.size() + 1, "Vilhelm", byte3));
+        DatabaseList.addItem(new Person( "Kjetil", byte1));
+        DatabaseList.addItem(new Person("Øystein", byte2));
+        DatabaseList.addItem(new Person("Vilhelm", byte3));
 
         roomDBQuiz = Room.databaseBuilder(getApplicationContext(), RoomDBQuiz.class, "persondb").allowMainThreadQueries().build();
 

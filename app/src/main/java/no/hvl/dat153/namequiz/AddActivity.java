@@ -128,7 +128,7 @@ public class AddActivity extends AppCompatActivity {
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         byte[] byteIMG = convertToByteArray(bitmap);
 
-        Person p = new Person(DatabaseList.ITEMS.size() + 1, result, byteIMG);
+        Person p = new Person( result, byteIMG);
         if (store.equals("yes"))
             personDao.insertPerson(p);
         DatabaseList.addItem(p);

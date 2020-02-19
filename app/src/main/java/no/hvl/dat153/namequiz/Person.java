@@ -18,8 +18,7 @@ public class Person {
     private String name;
     private byte[] image;
 
-    public Person(int id, String name, byte[] image) {
-        this.id = id;
+    public Person(String name, byte[] image) {
         this.name = name;
         this.image = image;
     }

@@ -41,7 +41,7 @@ public class DAOTest {
         Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.pic1);
         byte[] bytearr = convertToByteArray(bitmap);
 
-        Person p = new Person(0, "test", bytearr);
+        Person p = new Person("test", bytearr);
         personDao.insertPerson(p);
 
         ArrayList<Person> list = (ArrayList<Person>) personDao.findPerson("test");
@@ -56,13 +56,13 @@ public class DAOTest {
         Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.pic1);
         byte[] bytearr = convertToByteArray(bitmap);
 
-        Person p = new Person(0, "test", bytearr);
+        Person p = new Person("test", bytearr);
         personDao.insertPerson(p);
 
         personDao.deletePerson(p);
         ArrayList<Person> list = (ArrayList<Person>) personDao.findPerson("test");
 
-        assert (list.contains("test") == false);
+        assert (!list.contains("test"));
     }
 
     public byte[] convertToByteArray(Bitmap bitmap) {
