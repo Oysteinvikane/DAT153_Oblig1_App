@@ -36,7 +36,7 @@ public class InitialDataApp extends Application {
 
 
         //Legger bildene til i databaselist.
-        DatabaseList.addItem(new Person( "Kjetil", byte1));
+        DatabaseList.addItem(new Person("Kjetil", byte1));
         DatabaseList.addItem(new Person("Øystein", byte2));
         DatabaseList.addItem(new Person("Vilhelm", byte3));
 

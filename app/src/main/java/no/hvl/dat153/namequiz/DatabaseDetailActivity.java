@@ -3,6 +3,7 @@ package no.hvl.dat153.namequiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * An activity representing a single Item detail screen. This
@@ -33,8 +35,12 @@ public class DatabaseDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
         AppBarLayout appBarLayout1 = findViewById(R.id.app_bar);
         appBarLayout1.setExpanded(false, false);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab2);
+
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -48,14 +54,21 @@ public class DatabaseDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Bundle arguments = new Bundle();
+            final Bundle arguments = new Bundle();
             arguments.putString(DatabaseDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(DatabaseDetailFragment.ARG_ITEM_ID));
             DatabaseDetailFragment fragment = new DatabaseDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.item_detail_container, fragment)
+                    .add(R.id.database_detail_container, fragment)
                     .commit();
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteItem(DatabaseList.ITEM_MAP.get(arguments.getString(DatabaseDetailFragment.ARG_ITEM_ID)));
+                    moveToDatabaseActivity();
+                }
+            });
         }
     }
 
@@ -74,5 +87,23 @@ public class DatabaseDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void moveToDatabaseActivity() {
+        Intent intent = new Intent(this, DatabaseListActivity.class);
+        startActivity(intent);
+    }
+    public void deleteItem(Person item) {
+        final PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
+        DatabaseList.ITEMS.remove(item);
+        personDao.deletePerson(item);
+        Intent i = new Intent(this, DatabaseListActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("EXIT", true);
+        startActivity(i);
+        this.finish();
+
     }
 }

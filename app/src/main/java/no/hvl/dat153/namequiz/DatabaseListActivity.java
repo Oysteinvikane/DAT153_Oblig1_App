@@ -16,7 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -48,7 +47,7 @@ public class DatabaseListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +62,7 @@ public class DatabaseListActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        if (findViewById(R.id.item_detail_container) != null) {
+        if (findViewById(R.id.database_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
@@ -92,7 +91,7 @@ public class DatabaseListActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            NavUtils.navigateUpFromSameTask(this);
+            NavUtils.navigateUpTo(this, new Intent(this, MainActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -105,8 +104,6 @@ public class DatabaseListActivity extends AppCompatActivity {
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private int itemCount = 0;
-
         private final DatabaseListActivity mParentActivity;
         private final List<Person> mValues;
         private final boolean mTwoPane;
@@ -116,7 +113,7 @@ public class DatabaseListActivity extends AppCompatActivity {
                 Person item = (Person) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(DatabaseDetailFragment.ARG_ITEM_ID, String.valueOf(item.id));
+                    arguments.putString(DatabaseDetailFragment.ARG_ITEM_ID, item.getName());
                     DatabaseDetailFragment fragment = new DatabaseDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -125,13 +122,11 @@ public class DatabaseListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, DatabaseDetailActivity.class);
-                    intent.putExtra(DatabaseDetailFragment.ARG_ITEM_ID, String.valueOf(item.id));
-
+                    intent.putExtra(DatabaseDetailFragment.ARG_ITEM_ID, item.getName());
                     context.startActivity(intent);
                 }
             }
         };
-
 
 
         SimpleItemRecyclerViewAdapter(DatabaseListActivity parent,

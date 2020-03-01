@@ -22,7 +22,7 @@ public class DatabaseList {
 
     public static void addItem(Person item) {
         ITEMS.add(item);
-        ITEM_MAP.put(String.valueOf(item.id), item);
+        ITEM_MAP.put(String.valueOf(item.getName()), item);
     }
 
 }

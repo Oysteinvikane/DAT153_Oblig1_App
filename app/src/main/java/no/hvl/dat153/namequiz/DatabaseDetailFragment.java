@@ -1,7 +1,6 @@
 package no.hvl.dat153.namequiz;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -55,7 +53,9 @@ public class DatabaseDetailFragment extends Fragment {
             if (appBarLayout != null) {
                 appBarLayout.setTitle(mItem.getName());
             }
-            FloatingActionButton fab = (FloatingActionButton) activity.findViewById(R.id.fab);
+            /*
+
+            FloatingActionButton fab = (FloatingActionButton) activity.findViewById(R.id.fab2);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -64,6 +64,8 @@ public class DatabaseDetailFragment extends Fragment {
 
                 }
             });
+             */
+
         }
 
     }
@@ -78,24 +80,7 @@ public class DatabaseDetailFragment extends Fragment {
             Bitmap bm = BitmapFactory.decodeByteArray(mItem.getImage(), 0, mItem.getImage().length);
             im.setImageBitmap(bm);
         }
-
         return rootView;
     }
-    private void moveToDatabaseActivity() {
-        Intent intent = new Intent(this.getActivity(), DatabaseListActivity.class);
-        startActivity(intent);
-    }
-    public void deleteItem(Person item) {
-        final PersonDao personDao = InitialDataApp.roomDBQuiz.personDAO();
-        DatabaseList.ITEMS.remove(item);
-        personDao.deletePerson(item);
-        Intent i = new Intent(this.getContext(), DatabaseListActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.putExtra("EXIT", true);
-        startActivity(i);
-        this.getActivity().finish();
 
-    }
 }
